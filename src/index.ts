@@ -36,8 +36,6 @@ async function main() {
 
   await User.sync({ force: true });
 
-  // Test a connection.
-  await sequelize.authenticate();
   const { id: userId } = await User.create({ name: "foo" });
 
   const transaction = await sequelize.transaction();
