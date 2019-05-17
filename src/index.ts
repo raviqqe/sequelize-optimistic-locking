@@ -36,26 +36,14 @@ async function main() {
 
   await User.sync({ force: true });
 
-  const { id: userId } = await User.create({ name: "foo" });
+  const user = await User.create({ name: "foo" });
 
-  const transaction = await sequelize.transaction();
-
-  try {
-    const user = await User.findByPk(userId, { transaction });
-
-    if (!user) {
-      throw new Error();
-    }
-
-    await updateUser(userId);
-
-    await user.update({ name: "bar" }, { transaction });
-  } catch (error) {
-    await transaction.rollback();
-    throw error;
+  if (!user) {
+    throw new Error();
   }
 
-  await transaction.commit();
+  await updateUser(user.id);
+  await user.update({ name: "bar" });
 
   await sequelize.close();
 }
