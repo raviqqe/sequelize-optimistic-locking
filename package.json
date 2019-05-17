@@ -1,5 +1,21 @@
 {
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint --project tsconfig.json src/**/*",
+    "start": "ts-node src/index.ts"
+  },
   "dependencies": {
-    "sequelize": "^5.8.6"
+    "pg": "^7.11.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^5.8.6",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/sequelize": "^4.28.1",
+    "@types/uuid": "^3.4.4",
+    "ts-node": "^8.1.0",
+    "tslint": "^5.16.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.4.5"
   }
 }
